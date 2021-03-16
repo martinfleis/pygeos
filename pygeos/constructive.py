@@ -727,7 +727,15 @@ def minimum_rotated_rectangle(geometry, **kwargs):
 @requires_geos("3.8.0")
 @multithreading_enabled
 def minimum_bounding_circle(geometry, **kwargs):
+    """Computes the minimum bounding circle that encloses an input geometry.
 
+    Parameters
+    ----------
+    geometry : Geometry or array_like
+
+    Examples
+    --------
+    """
     return lib.minimum_bounding_circle(geometry, **kwargs)
 
 
