@@ -414,9 +414,13 @@ static void* polygons_without_holes_data[1] = {GEOSLinearRingToPolygon};
 static void* build_area_data[1] = {GEOSBuildArea_r};
 static void* make_valid_data[1] = {GEOSMakeValid_r};
 static void* coverage_union_data[1] = {GEOSCoverageUnion_r};
+static void* minimum_bounding_circle_data[1] = {GEOSMinimumBoundingCircle_r};
 #endif
 #if GEOS_SINCE_3_7_0
 static void* reverse_data[1] = {GEOSReverse_r};
+#endif
+#if GEOS_SINCE_3_6_0
+static void* minimum_rotated_rectangle_data[1] = {GEOSMinimumRotatedRectangle_r};
 #endif
 typedef void* FuncGEOS_Y_Y(void* context, void* a);
 static char Y_Y_dtypes[2] = {NPY_OBJECT, NPY_OBJECT};
@@ -546,6 +550,8 @@ static void* simplify_preserve_topology_data[1] = {GEOSTopologyPreserveSimplify_
 
 #if GEOS_SINCE_3_9_0
 static void* unary_union_prec_data[1] = {GEOSUnaryUnionPrec_r};
+static void* maximum_inscribed_circle_data[1] = {GEOSMaximumInscribedCircle_r};
+static void* largest_empty_circle_data[1] = {GEOSLargestEmptyCircle_r};
 #endif
 
 #if GEOS_SINCE_3_10_0
@@ -2774,6 +2780,7 @@ int init_ufuncs(PyObject* m, PyObject* d) {
 #if GEOS_SINCE_3_6_0
   DEFINE_Y_d(minimum_clearance);
   DEFINE_Y_d(get_precision);
+  DEFINE_Y_Y(minimum_rotated_rectangle);
   DEFINE_CUSTOM(set_precision, 3);
 #endif
 
@@ -2789,6 +2796,7 @@ int init_ufuncs(PyObject* m, PyObject* d) {
   DEFINE_Y_Y(make_valid);
   DEFINE_Y_Y(build_area);
   DEFINE_Y_Y(coverage_union);
+  DEFINE_Y_Y(minimum_bounding_circle);
 #endif
 
 #if GEOS_SINCE_3_9_0
@@ -2797,6 +2805,8 @@ int init_ufuncs(PyObject* m, PyObject* d) {
   DEFINE_YYd_Y(symmetric_difference_prec);
   DEFINE_YYd_Y(union_prec);
   DEFINE_Yd_Y(unary_union_prec);
+  DEFINE_Yd_Y(maximum_inscribed_circle);
+  DEFINE_Yd_Y(largest_empty_circle);
 #endif
 
 #if GEOS_SINCE_3_10_0

@@ -27,6 +27,10 @@ __all__ = [
     "simplify",
     "snap",
     "voronoi_polygons",
+    "minimum_rotated_rectangle",
+    "minimum_bounding_circle",
+    "maximum_inscribed_circle",
+    "largest_empty_circle",
 ]
 
 
@@ -703,3 +707,39 @@ def voronoi_polygons(
     <pygeos.Geometry GEOMETRYCOLLECTION EMPTY>
     """
     return lib.voronoi_polygons(geometry, tolerance, extend_to, only_edges, **kwargs)
+
+
+@requires_geos("3.6.0")
+@multithreading_enabled
+def minimum_rotated_rectangle(geometry, **kwargs):
+    """Computes the minimum rotated rectangle that encloses an input geometry.
+
+    Parameters
+    ----------
+    geometry : Geometry or array_like
+
+    Examples
+    --------
+    """
+    return lib.minimum_rotated_rectangle(geometry, **kwargs)
+
+
+@requires_geos("3.8.0")
+@multithreading_enabled
+def minimum_bounding_circle(geometry, **kwargs):
+
+    return lib.minimum_bounding_circle(geometry, **kwargs)
+
+
+@requires_geos("3.9.0")
+@multithreading_enabled
+def maximum_inscribed_circle(geometry, tolerance, **kwargs):
+
+    return lib.maximum_inscribed_circle(geometry, tolerance, **kwargs)
+
+
+@requires_geos("3.9.0")
+@multithreading_enabled
+def largest_empty_circle(geometry, tolerance, **kwargs):
+
+    return lib.largest_empty_circle(geometry, tolerance, **kwargs)
